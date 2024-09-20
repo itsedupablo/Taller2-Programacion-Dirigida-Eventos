@@ -66,7 +66,7 @@ fun getGreetingMessage(): String {
 
     return when (hour) {
         in 0..11 -> "Buenos días"
-        in 12..17 -> "Buenas tardes"
+        in 12..20 -> "Buenas tardes"
         else -> "Buenas noches"
     }
 }
