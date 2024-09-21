@@ -1,7 +1,6 @@
 package com.edupablo.taller1app
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,25 +17,28 @@ import androidx.compose.ui.unit.dp
 import com.edupablo.taller1app.ui.theme.Taller1AppTheme
 
 class ConfiguracionActivity : ComponentActivity() {
+    private val defaultColor = Color.White // Color predeterminado
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Recuperar el color actual de SharedPreferences
-        var currentColor by mutableStateOf(getSavedBackgroundColor())
-
         setContent {
             Taller1AppTheme {
-                var selectedColor by remember { mutableStateOf(currentColor) }
+                var selectedColor by remember { mutableStateOf(defaultColor) }
 
                 ConfiguracionScreen(
                     selectedColor = selectedColor,
                     onColorSelected = { color ->
-                        selectedColor = color  // Cambia el color seleccionado
+                        // Cambiar el color seleccionado o restablecer a default
+                        if (color == selectedColor) {
+                            selectedColor = defaultColor // Restablecer a color predeterminado
+                        } else {
+                            selectedColor = color // Cambiar al nuevo color
+                        }
                     },
                     onVolverClick = {
-                        saveColorInPreferences(selectedColor)  // Guardar color en SharedPreferences
                         val resultIntent = Intent().apply {
-                            putExtra("selectedColor", selectedColor.toArgb())  // Pasamos el color como entero
+                            putExtra("selectedColor", selectedColor.toArgb())
                         }
                         setResult(Activity.RESULT_OK, resultIntent)
                         finish()  // Volver a la pantalla principal
@@ -44,22 +46,6 @@ class ConfiguracionActivity : ComponentActivity() {
                 )
             }
         }
-    }
-
-    // Guardar el color seleccionado en SharedPreferences
-    private fun saveColorInPreferences(color: Color) {
-        val sharedPref = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putInt("background_color", color.toArgb())
-            apply()
-        }
-    }
-
-    // Obtener el color desde SharedPreferences
-    private fun getSavedBackgroundColor(): Color {
-        val sharedPref = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
-        val colorInt = sharedPref.getInt("background_color", Color.White.toArgb())
-        return Color(colorInt)
     }
 }
 
@@ -89,6 +75,7 @@ fun ConfiguracionScreen(
             ColorButton(Color.Green) { onColorSelected(it) }
             ColorButton(Color.Blue) { onColorSelected(it) }
             ColorButton(Color.Yellow) { onColorSelected(it) }
+            ColorButton(selectedColor) { onColorSelected(selectedColor) } // Para visualizar el color seleccionado
         }
 
         Spacer(modifier = Modifier.height(32.dp))
