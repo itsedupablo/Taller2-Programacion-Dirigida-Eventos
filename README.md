@@ -1,4 +1,4 @@
-# TALLER 1: Programación Dirigida Por Eventos
+# TALLER 2: Programación Dirigida Por Eventos
 #### Link repositorio: https://github.com/itsedupablo/Taller2-Programacion-Dirigida-Eventos
 ## Índice
 - Descripción de la app.
