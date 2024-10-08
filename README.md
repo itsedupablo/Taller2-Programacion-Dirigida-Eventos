@@ -1,6 +1,6 @@
 # TALLER 2: Programación Dirigida Por Eventos
 #### Link repositorio: https://github.com/itsedupablo/Taller2-Programacion-Dirigida-Eventos
-### >>>EL ARCHIVO MAIN DEL ZIP DE ESTE REPOSITORIO SUBIDO AL CAMPUS DA ERRORES. SE HA VUELTO A SUBIR CON LOS FALLOS SOLUCIONADOS.
+### >>> EL ARCHIVO MAIN DEL ZIP DE ESTE REPOSITORIO SUBIDO AL CAMPUS DA ERRORES. SE HA VUELTO A SUBIR CON LOS FALLOS SOLUCIONADOS.
 ## Índice
 - Descripción de la app.
 - Características de diseño: Pantalla de Inicio, Pantalla Principal, Pantalla de Configuración.
